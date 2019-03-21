@@ -1,6 +1,9 @@
 #-*- coding: utf-8 -*-
+# https://github.com/KodiStream/xbmc-adult-addons
 
-import xbmcaddon, xbmcgui, xbmc
+import xbmcaddon
+import xbmcgui
+import xbmc
 
 """System d'importation
 
@@ -26,22 +29,24 @@ addons2 = addon('plugin.video.youtube')
 addons2.openSettings()
 """
 
+
 class addon(xbmcaddon.Addon):
 
-    #def __init__(self, id='plugin.video.adult.stream'):
+    # def __init__(self, id='plugin.video.adult.stream'):
     #    xbmcaddon.__init__(id)
     #    pass
 
     def VSlang(self, lang):
         return xbmc.translatePath(self.getLocalizedString(lang))
-        #xbmcaddon.Addon('plugin.video.adult.stream').getLocalizedString(lang))
-        #Bug avec accent xbmc.translatePath(xbmcaddon.Addon('plugin.video.adult.stream').getLocalizedString(lang)).decode("utf-8")
+        # xbmcaddon.Addon('plugin.video.adult.stream').getLocalizedString(lang))
+        # Bug avec accent
+        # xbmc.translatePath(xbmcaddon.Addon('plugin.video.adult.stream').getLocalizedString(lang)).decode("utf-8")
 
-    #deprecier utiliser addons.setSetting et addons.getSetting
+    # deprecier utiliser addons.setSetting et addons.getSetting
     def VSsetting(self, name, value=False):
         #adons = addon()
-        #use addons.setting('name') pour getsetting
-        #use addons.setting('name', 'value) pour setsetting
+        # use addons.setting('name') pour getsetting
+        # use addons.setting('name', 'value) pour setsetting
         if value:
             return self.setSetting(name, value)
         else:
@@ -57,12 +62,13 @@ dialogs.VSinfo('test')
 http://mirrors.kodi.tv/docs/python-docs/16.x-jarvis/xbmcgui.html#Dialog
 """
 
+
 class dialog(xbmcgui.Dialog):
 
-    #def __init__(self):
+    # def __init__(self):
     #    xbmcgui.__init__('')
     #    pass
-    
+
     def VSok(self, desc, title='Adult Stream'):
         dialog = self.ok(title, desc)
         return dialog
@@ -76,31 +82,31 @@ class dialog(xbmcgui.Dialog):
         return ret
 
     def VSselectqual(self, list_qual, list_url):
-        
+
         if len(list_url) == 0:
             return ''
         if len(list_url) == 1:
             return list_url[0]
-        
+
         ret = self.select(addon().VSlang(30448), list_qual)
         if ret > -1:
             return list_url[ret]
         return ''
 
-    def VSinfo(self, desc, title='Adult Stream', iseconds=0, sound = False):
+    def VSinfo(self, desc, title='Adult Stream', iseconds=0, sound=False):
         if (iseconds == 0):
             iseconds = 1000
         else:
             iseconds = iseconds * 1000
-        
+
         if (addon().getSetting('Block_Noti_sound') == 'true'):
             sound = True
 
-        return self.notification(str(title), str(desc),xbmcgui.NOTIFICATION_INFO,iseconds,sound)
+        return self.notification(str(title), str(desc), xbmcgui.NOTIFICATION_INFO, iseconds, sound)
 
     def VSerror(self, e):
-        return self.notification('Adult Stream','Erreur: '+str(e),xbmcgui.NOTIFICATION_ERROR,2000), VSlog('Erreur: ' + str(e))
-        
+        return self.notification('Adult Stream', 'Erreur: ' + str(e), xbmcgui.NOTIFICATION_ERROR, 2000), VSlog('Erreur: ' + str(e))
+
 """
 from resources.lib.comaddon import progress
 
@@ -119,8 +125,9 @@ http://mirrors.kodi.tv/docs/python-docs/16.x-jarvis/xbmcgui.html#DialogProgress
 COUNT = 0
 DIALOG2 = None
 
+
 class empty():
-    
+
     def VSupdate(self, dialog, total, text=''):
         pass
 
@@ -129,16 +136,16 @@ class empty():
 
     def VSclose(self, dialog):
         pass
-    
-    def VSupdatesearch(self,dialog, total, text=''):
+
+    def VSupdatesearch(self, dialog, total, text=''):
         pass
+
 
 class progress(xbmcgui.DialogProgress):
 
-    
     def VScreate(self, title='Adult Stream', desc=''):
         global DIALOG2
-        
+
         current_window = xbmcgui.getCurrentWindowId()
         if current_window == 10000:
             return empty()
@@ -148,7 +155,8 @@ class progress(xbmcgui.DialogProgress):
             VSlog('create dialog')
             DIALOG2 = self
             return self
-        else: return DIALOG2
+        else:
+            return DIALOG2
 
     def VSupdate(self, dialog, total, text=''):
         if window(10101).getProperty('search') == 'true':
@@ -156,14 +164,15 @@ class progress(xbmcgui.DialogProgress):
         global COUNT
         COUNT += 1
         iPercent = int(float(COUNT * 100) / total)
-        dialog.update(iPercent, 'Loading: '+str(COUNT)+'/'+str(total), text)
+        dialog.update(iPercent, 'Loading: ' +
+                      str(COUNT) + '/' + str(total), text)
 
     def VSupdatesearch(self, dialog, total, text=''):
         global COUNT
         COUNT += 1
         iPercent = int(float(COUNT * 100) / total)
-        dialog.update(iPercent, 'Loading: '+str(COUNT)+'/'+str(total), text)
-
+        dialog.update(iPercent, 'Loading: ' +
+                      str(COUNT) + '/' + str(total), text)
 
     def VSclose(self, dialog):
         if window(10101).getProperty('search') == 'true':
@@ -173,7 +182,7 @@ class progress(xbmcgui.DialogProgress):
         del dialog
         return False
 
-        
+
 """
 from resources.lib.comaddon import window
 
@@ -181,8 +190,9 @@ window(10101).getProperty('test')
 http://mirrors.kodi.tv/docs/python-docs/16.x-jarvis/xbmcgui.html#Window
 """
 
+
 class window(xbmcgui.Window):
-    
+
     def __init__(self, id):
         pass
 
@@ -193,10 +203,11 @@ listitem.setLabel('test')
 http://mirrors.kodi.tv/docs/python-docs/16.x-jarvis/xbmcgui.html#ListItem
 """
 
+
 class listitem(xbmcgui.ListItem):
 
     #ListItem([label, label2, iconImage, thumbnailImage, path])
-    
+
     def __init__(self, label="", label2="", iconImage="", thumbnailImage="", path=""):
         pass
 
@@ -207,23 +218,29 @@ ou
 xbmc.log
 """
 
-#xbmc des fonctions pas des class
+# xbmc des fonctions pas des class
+
+
 def VSlog(e, level=xbmc.LOGDEBUG):
-    #rapelle l'ID de l'addon pour être apeller hors addon
+    # rapelle l'ID de l'addon pour être apeller hors addon
     if (addon('plugin.video.adult.stream').getSetting('debug') == 'true'):
         level = xbmc.LOGNOTICE
-    return xbmc.log('[PLUGIN] Adult Stream: '+str(e), level)
+    return xbmc.log('\t[PLUGIN] Adult Stream: ' + str(e), level)
+
 
 def VSupdate():
     return xbmc.executebuiltin("Container.Refresh")
 
+
 def VSshow_busy():
     xbmc.executebuiltin('ActivateWindow(busydialog)')
+
 
 def VShide_busy():
     xbmc.executebuiltin('Dialog.Close(busydialog)')
     while xbmc.getCondVisibility('Window.IsActive(busydialog)'):
         xbmc.sleep(100)
+
 
 def isKrypton():
     try:
@@ -235,16 +252,19 @@ def isKrypton():
     except:
         return False
 
+
 def VSread(sHtmlContent):
     import xbmcvfs
     file = "special://userdata/addon_data/plugin.video.adult.stream/html.txt"
     if xbmcvfs.exists(file):
         xbmcvfs.delete(file)
 
-    f = xbmcvfs.File (file, 'w')
+    f = xbmcvfs.File(file, 'w')
     result = f.write(sHtmlContent)
     f.close()
 
-#use cGui.showKeyBoard
+# use cGui.showKeyBoard
+
+
 def VSkeyboard(sDefaultText=''):
     return False
