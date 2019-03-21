@@ -1,0 +1,130 @@
+[
+  {
+    "name": "__init__.py",
+    "path": "plugin.video.adult.stream/resources/lib/scrapers/__init__.py",
+    "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "size": 0,
+    "url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/__init__.py?ref=master",
+    "html_url": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/__init__.py",
+    "git_url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "download_url": "https://raw.githubusercontent.com/KodiStream/xbmc-adult-addons/master/plugin.video.adult.stream/resources/lib/scrapers/__init__.py",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/__init__.py?ref=master",
+      "git": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "html": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/__init__.py"
+    }
+  },
+  {
+    "name": "ade.py",
+    "path": "plugin.video.adult.stream/resources/lib/scrapers/ade.py",
+    "sha": "b1983d6105a94bdf596a4cbde6acc1bbac851348",
+    "size": 9642,
+    "url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/ade.py?ref=master",
+    "html_url": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/ade.py",
+    "git_url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/b1983d6105a94bdf596a4cbde6acc1bbac851348",
+    "download_url": "https://raw.githubusercontent.com/KodiStream/xbmc-adult-addons/master/plugin.video.adult.stream/resources/lib/scrapers/ade.py",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/ade.py?ref=master",
+      "git": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/b1983d6105a94bdf596a4cbde6acc1bbac851348",
+      "html": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/ade.py"
+    }
+  },
+  {
+    "name": "aebn.py",
+    "path": "plugin.video.adult.stream/resources/lib/scrapers/aebn.py",
+    "sha": "ddedc832907aa5514f011811753cd07f3064d8ee",
+    "size": 6730,
+    "url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/aebn.py?ref=master",
+    "html_url": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/aebn.py",
+    "git_url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/ddedc832907aa5514f011811753cd07f3064d8ee",
+    "download_url": "https://raw.githubusercontent.com/KodiStream/xbmc-adult-addons/master/plugin.video.adult.stream/resources/lib/scrapers/aebn.py",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/aebn.py?ref=master",
+      "git": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/ddedc832907aa5514f011811753cd07f3064d8ee",
+      "html": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/aebn.py"
+    }
+  },
+  {
+    "name": "afdb.py",
+    "path": "plugin.video.adult.stream/resources/lib/scrapers/afdb.py",
+    "sha": "1a703e3ec9cb18ecc80768b7deeb23982b1a11b7",
+    "size": 6865,
+    "url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/afdb.py?ref=master",
+    "html_url": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/afdb.py",
+    "git_url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/1a703e3ec9cb18ecc80768b7deeb23982b1a11b7",
+    "download_url": "https://raw.githubusercontent.com/KodiStream/xbmc-adult-addons/master/plugin.video.adult.stream/resources/lib/scrapers/afdb.py",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/afdb.py?ref=master",
+      "git": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/1a703e3ec9cb18ecc80768b7deeb23982b1a11b7",
+      "html": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/afdb.py"
+    }
+  },
+  {
+    "name": "cdu.py",
+    "path": "plugin.video.adult.stream/resources/lib/scrapers/cdu.py",
+    "sha": "9c4923f0e04f049c0b39fc167a9f6b4d97c244de",
+    "size": 6295,
+    "url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/cdu.py?ref=master",
+    "html_url": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/cdu.py",
+    "git_url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/9c4923f0e04f049c0b39fc167a9f6b4d97c244de",
+    "download_url": "https://raw.githubusercontent.com/KodiStream/xbmc-adult-addons/master/plugin.video.adult.stream/resources/lib/scrapers/cdu.py",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/cdu.py?ref=master",
+      "git": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/9c4923f0e04f049c0b39fc167a9f6b4d97c244de",
+      "html": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/cdu.py"
+    }
+  },
+  {
+    "name": "gl.py",
+    "path": "plugin.video.adult.stream/resources/lib/scrapers/gl.py",
+    "sha": "0a35417bd8a53d957bf152331d78529a3b07c020",
+    "size": 6193,
+    "url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/gl.py?ref=master",
+    "html_url": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/gl.py",
+    "git_url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/0a35417bd8a53d957bf152331d78529a3b07c020",
+    "download_url": "https://raw.githubusercontent.com/KodiStream/xbmc-adult-addons/master/plugin.video.adult.stream/resources/lib/scrapers/gl.py",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/gl.py?ref=master",
+      "git": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/0a35417bd8a53d957bf152331d78529a3b07c020",
+      "html": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/gl.py"
+    }
+  },
+  {
+    "name": "main.py",
+    "path": "plugin.video.adult.stream/resources/lib/scrapers/main.py",
+    "sha": "64481f66bc5b2e8449e9a03856b04855310f3bb0",
+    "size": 13527,
+    "url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/main.py?ref=master",
+    "html_url": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/main.py",
+    "git_url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/64481f66bc5b2e8449e9a03856b04855310f3bb0",
+    "download_url": "https://raw.githubusercontent.com/KodiStream/xbmc-adult-addons/master/plugin.video.adult.stream/resources/lib/scrapers/main.py",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/main.py?ref=master",
+      "git": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/64481f66bc5b2e8449e9a03856b04855310f3bb0",
+      "html": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/main.py"
+    }
+  },
+  {
+    "name": "tvtsvod.py",
+    "path": "plugin.video.adult.stream/resources/lib/scrapers/tvtsvod.py",
+    "sha": "58311fe8d1c39970e191b0acb8b61b75e153b11f",
+    "size": 15218,
+    "url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/tvtsvod.py?ref=master",
+    "html_url": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/tvtsvod.py",
+    "git_url": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/58311fe8d1c39970e191b0acb8b61b75e153b11f",
+    "download_url": "https://raw.githubusercontent.com/KodiStream/xbmc-adult-addons/master/plugin.video.adult.stream/resources/lib/scrapers/tvtsvod.py",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/contents/plugin.video.adult.stream/resources/lib/scrapers/tvtsvod.py?ref=master",
+      "git": "https://api.github.com/repos/KodiStream/xbmc-adult-addons/git/blobs/58311fe8d1c39970e191b0acb8b61b75e153b11f",
+      "html": "https://github.com/KodiStream/xbmc-adult-addons/blob/master/plugin.video.adult.stream/resources/lib/scrapers/tvtsvod.py"
+    }
+  }
+]
