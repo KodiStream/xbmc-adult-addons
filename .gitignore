@@ -1,0 +1,9 @@
+*.pyo
+*.pyo
+*.pyo
+repo/plugin.video.adult.stream/Thumbs.db
+*.db
+*.db
+*.db
+plugin.video.adult.stream/resources/art/Thumbs.db
+.vscode/settings.json
