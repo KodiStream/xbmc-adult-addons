@@ -1,5 +1,6 @@
 #-*- coding: utf-8 -*-
-# Kodistream.
+# https://github.com/KodiStream/xbmc-adult-addons
+# KodiStream
 from resources.lib.gui.gui import cGui
 from resources.lib.gui.guiElement import cGuiElement
 from resources.lib.gui.contextElement import cContextElement
@@ -19,46 +20,48 @@ class cHosterGui:
     DIALOG = dialog()
 
     # step 1 - bGetRedirectUrl in ein extra optionsObject verpacken
-    def showHoster(self, oGui, oHoster, sMediaUrl, sThumbnail, bGetRedirectUrl = False):
+    def showHoster(self, oGui, oHoster, sMediaUrl, sThumbnail, bGetRedirectUrl=False):
 
         oInputParameterHandler = cInputParameterHandler()
         sMovieTitle = oInputParameterHandler.getValue('title')
 
-
-
         oGuiElement = cGuiElement()
         oGuiElement.setSiteName(self.SITE_NAME)
-        #oGuiElement.setFunction('showHosterMenu')
+        # oGuiElement.setFunction('showHosterMenu')
         oGuiElement.setFunction('play')
         oGuiElement.setTitle(oHoster.getDisplayName())
-        #oGuiElement.setThumbnail(sThumbnail)
+        # oGuiElement.setThumbnail(sThumbnail)
         # if (oInputParameterHandler.exist('sMeta')):
-            # sMeta = oInputParameterHandler.getValue('sMeta')
-            # oGuiElement.setMeta(int(sMeta))
+        # sMeta = oInputParameterHandler.getValue('sMeta')
+        # oGuiElement.setMeta(int(sMeta))
 
         oGuiElement.setFileName(oHoster.getFileName())
         oGuiElement.getInfoLabel()
         if sThumbnail:
             oGuiElement.setThumbnail(sThumbnail)
 
-        #oGuiElement.setMeta(1)
+        # oGuiElement.setMeta(1)
         oGuiElement.setIcon('host.png')
 
         oOutputParameterHandler = cOutputParameterHandler()
         oOutputParameterHandler.addParameter('sMediaUrl', sMediaUrl)
         #oOutputParameterHandler.addParameter('sThumbnail', oGuiElement.getThumbnail())
 
-        oOutputParameterHandler.addParameter('sHosterIdentifier', oHoster.getPluginIdentifier())
-        oOutputParameterHandler.addParameter('bGetRedirectUrl', bGetRedirectUrl)
-        oOutputParameterHandler.addParameter('sFileName', oHoster.getFileName())
+        oOutputParameterHandler.addParameter(
+            'sHosterIdentifier', oHoster.getPluginIdentifier())
+        oOutputParameterHandler.addParameter(
+            'bGetRedirectUrl', bGetRedirectUrl)
+        oOutputParameterHandler.addParameter(
+            'sFileName', oHoster.getFileName())
 
-        oOutputParameterHandler.addParameter('sTitle', oHoster.getDisplayName())
+        oOutputParameterHandler.addParameter(
+            'sTitle', oHoster.getDisplayName())
         oOutputParameterHandler.addParameter('sId', 'cHosterGui')
         oOutputParameterHandler.addParameter('siteUrl', sMediaUrl)
         #oOutputParameterHandler.addParameter('sFav', 'play')
         #oOutputParameterHandler.addParameter('sCat', '4')
 
-        #nouveaux pour la lecture.
+        # nouveaux pour la lecture.
         if (oInputParameterHandler.exist('sCat')):
             sCat = oInputParameterHandler.getValue('sCat')
             oGuiElement.setCat(sCat)
@@ -66,11 +69,11 @@ class cHosterGui:
         else:
             oGuiElement.setCat('4')
 
-        #existe dans le menu krypton 17
+        # existe dans le menu krypton 17
         if not isKrypton():
             oGui.createContexMenuWatch(oGuiElement, oOutputParameterHandler)
 
-        #context playlit menu
+        # context playlit menu
         oContext = cContextElement()
         oContext.setFile('cHosterGui')
         oContext.setSiteName(self.SITE_NAME)
@@ -79,60 +82,83 @@ class cHosterGui:
         oContext.setOutputParameterHandler(oOutputParameterHandler)
         oGuiElement.addContextItem(oContext)
 
-        #Upload menu uptobox
-        if cInputParameterHandler().getValue('site') != 'siteuptobox' and self.ADDON.getSetting('hoster_uptobox_premium') == 'true' :
+        # Download menu
+        if (oHoster.isDownloadable() == True):
+            oContext = cContextElement()
+            oContext.setFile('cDownload')
+            oContext.setSiteName('cDownload')
+            oContext.setFunction('AddtoDownloadList')
+            oContext.setTitle(self.ADDON.VSlang(30202))
+            oContext.setOutputParameterHandler(oOutputParameterHandler)
+            oGuiElement.addContextItem(oContext)
+
+        if (oHoster.isDownloadable() == True):
+            # Beta context download and view menu
+            oContext = cContextElement()
+            oContext.setFile('cDownload')
+            oContext.setSiteName('cDownload')
+            oContext.setFunction('AddtoDownloadListandview')
+            oContext.setTitle(self.ADDON.VSlang(30326))
+            oContext.setOutputParameterHandler(oOutputParameterHandler)
+            oGuiElement.addContextItem(oContext)
+
+        # Upload menu uptobox
+        if cInputParameterHandler().getValue('site') != 'siteuptobox' and self.ADDON.getSetting('hoster_uptobox_premium') == 'true':
             host = oHoster.getPluginIdentifier()
-            accept = ['uptobox','uptostream','onefichier','uploaded','uplea']
+            accept = ['uptobox', 'uptostream',
+                      'onefichier', 'uploaded', 'uplea']
             for i in accept:
-                if host == i :
-                    oGui.CreateSimpleMenu(oGuiElement, oOutputParameterHandler, 'siteuptobox', 'siteuptobox', 'UptomyAccount', self.ADDON.VSlang(30325))
+                if host == i:
+                    oGui.CreateSimpleMenu(oGuiElement, oOutputParameterHandler, 'siteuptobox',
+                                          'siteuptobox', 'UptomyAccount', self.ADDON.VSlang(30325))
 
-        #onefichier
-        if cInputParameterHandler().getValue('site') != 'siteonefichier' and self.ADDON.getSetting('hoster_onefichier_premium') == 'true' :
+        # onefichier
+        if cInputParameterHandler().getValue('site') != 'siteonefichier' and self.ADDON.getSetting('hoster_onefichier_premium') == 'true':
             host = oHoster.getPluginIdentifier()
-            accept = 'onefichier' #les autres ne fonctionnent pas
-            if host == accept :
-                oGui.CreateSimpleMenu(oGuiElement, oOutputParameterHandler, 'siteonefichier', 'siteonefichier', 'UptomyAccount', '1fichier')
+            accept = 'onefichier'  # les autres ne fonctionnent pas
+            if host == accept:
+                oGui.CreateSimpleMenu(oGuiElement, oOutputParameterHandler,
+                                      'siteonefichier', 'siteonefichier', 'UptomyAccount', '1fichier')
 
-
-        #context FAV menu
+        # context FAV menu
         oGui.createContexMenuFav(oGuiElement, oOutputParameterHandler)
 
-        #context Library menu
-        oGui.CreateSimpleMenu(oGuiElement, oOutputParameterHandler, 'cLibrary', 'cLibrary', 'setLibrary', self.ADDON.VSlang(30324))
+        # context Library menu
+        oGui.CreateSimpleMenu(oGuiElement, oOutputParameterHandler,
+                              'cLibrary', 'cLibrary', 'setLibrary', self.ADDON.VSlang(30324))
 
-        #bug
+        # bug
         oGui.addHost(oGuiElement, oOutputParameterHandler)
 
         #oGui.addFolder(oGuiElement, oOutputParameterHandler)
 
     def checkHoster(self, sHosterUrl):
 
-        #securitee
+        # securitee
         if (not sHosterUrl):
             return False
 
-        #Petit nettoyage
+        # Petit nettoyage
         sHosterUrl = sHosterUrl.split('|')[0]
 
-        #Recuperation du host
+        # Recuperation du host
         try:
             sHostName = sHosterUrl.split('/')[2]
         except:
             sHostName = sHosterUrl
 
-        #L'user a active l'url resolver ?
+        # L'user a active l'url resolver ?
         if self.ADDON.getSetting('UserUrlResolver') == 'true':
             import urlresolver
             hmf = urlresolver.HostedMediaFile(url=sHosterUrl)
             if hmf.valid_url():
                 tmp = self.getHoster('resolver')
                 RH = sHosterUrl.split('/')[2]
-                RH = RH.replace('www.','')
-                tmp.setRealHost( RH[:3].upper() )
+                RH = RH.replace('www.', '')
+                tmp.setRealHost(RH[:3].upper())
                 return tmp
 
-        #Gestion classique
+        # Gestion classique
         if ('livestream' in sHostName):
             return self.getHoster('lien_direct')
         if ('gounlimited' in sHostName):
@@ -219,8 +245,6 @@ class cHosterGui:
             return self.getHoster('uqload')
         if ('letwatch' in sHostName):
             return self.getHoster('letwatch')
-        if ('easyvid' in sHostName):
-            return self.getHoster('easyvid')
         if ('www.amazon' in sHostName):
             return self.getHoster('amazon')
         if ('filepup' in sHostName):
@@ -230,7 +254,7 @@ class cHosterGui:
         if ('wstream.' in sHostName):
             return self.getHoster('wstream')
         if ('watchvideo' in sHostName):
-             return self.getHoster('watchvideo')
+            return self.getHoster('watchvideo')
         if ('drive.google.com' in sHostName):
             return self.getHoster('googledrive')
         if ('docs.google.com' in sHostName):
@@ -275,7 +299,7 @@ class cHosterGui:
             return self.getHoster('vidbom')
         if ('upvid.' in sHostName):
             return self.getHoster('upvid')
-        if (('cloudvid' in sHostName ) or ('clipwatching.' in sHostName)):
+        if (('cloudvid' in sHostName) or ('clipwatching.' in sHostName)):  # meme code
             return self.getHoster('cloudvid')
         if ('megadrive' in sHostName):
             return self.getHoster('megadrive')
@@ -287,7 +311,7 @@ class cHosterGui:
             return self.getHoster('iframe_secured')
         if ('iframe-secure' in sHostName):
             return self.getHoster('iframe_secure')
-        if ('goo.gl' in sHostName or 'bit.ly' in sHostName or 'streamcrypt.net' in sHostName):
+        if ('goo.gl' in sHostName or 'bit.ly' in sHostName or 'streamcrypt.net' in sHostName or 'opsktp.com' in sHosterUrl):
             return self.getHoster('allow_redirects')
         if ('jawcloud' in sHostName):
             return self.getHoster('jawcloud')
@@ -307,8 +331,10 @@ class cHosterGui:
             return self.getHoster('hd_stream')
         if ('rapidstream' in sHostName):
             return self.getHoster('rapidstream')
-        
-        #Lien telechargeable a convertir en stream
+        if ('archive.' in sHostName):
+            return self.getHoster('archive')
+
+        # Lien telechargeable a convertir en stream
         if ('1fichier' in sHostName):
             return self.getHoster('onefichier')
         if ('uptobox' in sHostName):
@@ -320,11 +346,13 @@ class cHosterGui:
 
         if ('kaydo.ws' in sHostName):
             return self.getHoster('lien_direct')
+        if ('fembed' in sHostName):
+            return self.getHoster('lien_direct')
 
-        #Si aucun hebergeur connu on teste les liens directs
+        # Si aucun hebergeur connu on teste les liens directs
         if (sHosterUrl[-4:] in '.mp4.avi.flv.m3u8.webm'):
             return self.getHoster('lien_direct')
-        #Cas special si parametre apres le lien_direct
+        # Cas special si parametre apres le lien_direct
         if (sHosterUrl.split('?')[0][-4:] in '.mp4.avi.flv.m3u8.webm'):
             return self.getHoster('lien_direct')
 
@@ -339,7 +367,8 @@ class cHosterGui:
         oGui = cGui()
         oInputParameterHandler = cInputParameterHandler()
 
-        sHosterIdentifier = oInputParameterHandler.getValue('sHosterIdentifier')
+        sHosterIdentifier = oInputParameterHandler.getValue(
+            'sHosterIdentifier')
         sMediaUrl = oInputParameterHandler.getValue('sMediaUrl')
         bGetRedirectUrl = oInputParameterHandler.getValue('bGetRedirectUrl')
         sFileName = oInputParameterHandler.getValue('sFileName')
@@ -370,12 +399,12 @@ class cHosterGui:
                 oGuiElement.setSiteName(self.SITE_NAME)
                 oGuiElement.setMediaUrl(aLink[1])
                 oGuiElement.setTitle(sTitle)
-                #oGuiElement.setTitle(oHoster.getFileName())
+                # oGuiElement.setTitle(oHoster.getFileName())
                 oGuiElement.getInfoLabel()
 
                 oPlayer = cPlayer()
 
-                #sous titres ?
+                # sous titres ?
                 if len(aLink) > 2:
                     oPlayer.AddSubtitles(aLink[2])
 
@@ -396,7 +425,8 @@ class cHosterGui:
 
         oInputParameterHandler = cInputParameterHandler()
 
-        sHosterIdentifier = oInputParameterHandler.getValue('sHosterIdentifier')
+        sHosterIdentifier = oInputParameterHandler.getValue(
+            'sHosterIdentifier')
         sMediaUrl = oInputParameterHandler.getValue('sMediaUrl')
         bGetRedirectUrl = oInputParameterHandler.getValue('bGetRedirectUrl')
         sFileName = oInputParameterHandler.getValue('sFileName')
