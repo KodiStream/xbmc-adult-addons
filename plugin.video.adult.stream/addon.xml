@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-    <addon id="plugin.video.adult.stream" name="Adult Stream" version="0.0.1" provider-name="KodiStream Team">
+    <addon id="plugin.video.adult.stream" name="Adult Stream" version="0.0.2" provider-name="KodiStream Team">
         <requires>
             <import addon="xbmc.python" version="2.24.0"/>
             <import addon="script.module.simplejson" version="3.3.0"/>
