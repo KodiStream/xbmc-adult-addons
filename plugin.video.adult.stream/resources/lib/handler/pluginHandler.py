@@ -6,11 +6,12 @@ from resources.lib.comaddon import addon, VSlog
 import sys
 import xbmcvfs
 
+
 class cPluginHandler:
 
     def getPluginHandle(self):
         try:
-            return int( sys.argv[ 1 ] )
+            return int(sys.argv[1])
         except:
             return 0
 
@@ -26,14 +27,13 @@ class cPluginHandler:
         folder, items = xbmcvfs.listdir(sFolder)
         items.sort()
         for sItemName in items:
-            
+
             if not sItemName.endswith(".py"):
                 continue
-            
 
             #sFilePath = os.path.join(unicode(sFolder, 'utf-8'), sItemName)
             sFilePath = "/".join([sFolder, sItemName])
-            #size
+            # size
             # sSize = 0
             # try:
             #     file=open(sFilePath)
@@ -48,9 +48,9 @@ class cPluginHandler:
             #cConfig().log("Load Plugin %s : Size %s" % (sItemName, sSize))
             VSlog("Load Plugin %s" % (sItemName))
 
-            #if (os.path.isdir(sFilePath) == False):
+            # if (os.path.isdir(sFilePath) == False):
             if (xbmcvfs.exists(sFilePath) == True):
-                #if (str(sFilePath.lower()).endswith('py')):
+                # if (str(sFilePath.lower()).endswith('py')):
                 if (sFilePath.lower().endswith('py')):
                     sItemName = sItemName.replace('.py', '')
                     aNameList.append(sItemName)
@@ -81,7 +81,7 @@ class cPluginHandler:
     #     sFolder = sFolder.replace('\\', '/')
     #     return sFolder
 
-    def getAvailablePlugins(self, force = False):
+    def getAvailablePlugins(self, force=False):
         #oConfig = cConfig()
         addons = addon()
 
@@ -110,21 +110,22 @@ class cPluginHandler:
                 if (bPlugin != ''):
                     # settings gefunden
                     if (bPlugin == 'true') or (force == True):
-                        aPlugins.append(self.__createAvailablePluginsItem(sSiteName, sFileName, sSiteDesc))
+                        aPlugins.append(self.__createAvailablePluginsItem(
+                            sSiteName, sFileName, sSiteDesc))
                 else:
-                   # settings nicht gefunden, also schalten wir es trotzdem sichtbar
-                   aPlugins.append(self.__createAvailablePluginsItem(sSiteName, sFileName, sSiteDesc))
+                    # settings nicht gefunden, also schalten wir es trotzdem
+                    # sichtbar
+                    aPlugins.append(self.__createAvailablePluginsItem(
+                        sSiteName, sFileName, sSiteDesc))
 
         return aPlugins
-
 
     def getAllPlugins(self):
         #oConfig = cConfig()
 
         #sFolder =  self.getRootFolder()
         #sFolder = os.path.join(sFolder, 'resources/sites')
-        #print sFolder
-        
+        # print sFolder
 
         sFolder = "special://home/addons/plugin.video.adult.stream/resources/sites"
 
@@ -143,8 +144,10 @@ class cPluginHandler:
                 sPluginSettingsName = aPlugin[1]
                 sSiteDesc = aPlugin[2]
 
-                # settings nicht gefunden, also schalten wir es trotzdem sichtbar
-                aPlugins.append(self.__createAvailablePluginsItem(sSiteName, sFileName, sSiteDesc))
+                # settings nicht gefunden, also schalten wir es trotzdem
+                # sichtbar
+                aPlugins.append(self.__createAvailablePluginsItem(
+                    sSiteName, sFileName, sSiteDesc))
 
         return aPlugins
 
