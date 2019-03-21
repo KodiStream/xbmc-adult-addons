@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+
+    <category label="30021">
+        <setting type="lsep" label="30030"/>
+        <setting id="playerPlay" type="enum" values="XbmcPlayer|XbmcPlugin (recommandé)" label="30029" default="1"/>
+        <setting id="playerType" type="enum" values="Auto|MPlayer|DVDPlayer" label="30001" default="2" enable="eq(-1,0)"/>
+        <setting id="srt-view" type="bool" label="30002" default="false" visible="false"/>
+        <setting id="deco_color" type="select" label="30010" values="aliceblue|lemonchiffon|lightblue|lightcoral|lightcyan|lightgrey|lightgreen|lightpink|lightsalmon|lightseagreen|lightskyblue|lightslategray|lightslategrey|lightsteelblue|lightyellow|lavender|moccasin|pink|plum|powderblue|seashell|coral" default="lightcoral"/>
+
+        <setting type="lsep" label="30037" />
+        <setting id="meta-view" type="bool" label="30006" default="true"/>
+
+        <setting label="30082" type="lsep"/>
+        <setting id="history-view" type="bool" label="Activer l'historique de recherche" default="true"/>
+
+        <setting label="30410" type="lsep"/>
+        <setting id="Block_Noti_sound" type="bool" label="30411" default="false"/>
+    </category>
+
+    <category label="30449">
+        <setting type="lsep" label="30034" />
+        <setting id="service_time" type="text" label="Derniere MAJ auto le:" default="" enable="false"/>
+        <setting id="service_version" type="text" label="Version:" default="" enable="false"/>
+        
+        <!-- setting invisible utilise -->
+        <setting id="service_futur" type="text" label="" default="" visible="false"/>
+        <setting id="bstoken" type="text" label="" default="" visible="false"/>
+        <setting id="tmdb_session" type="text" label="" default="" visible="false"/>
+        <setting id="tmdb_account" type="text" label="" default="" visible="false"/>
+
+        <setting label="30036" type="action" action="XBMC.RunScript(plugin.video.adult.stream, changelog, ?site=globalRun&amp;function=changelog)"/>
+
+        <setting type="lsep" label="30116" />
+	    <setting id="ZT" type="text" label="" default="" visible="false"/>
+
+        <setting label="30420" type="action"  action="XBMC.RunScript(plugin.video.adult.stream, search, ?site=globalRun&amp;function=search)" />
+
+        <!--activation invisible des sources -->
+        <setting visible="false" id="plugin_losporn_org" type="bool" label="Losporn" default="true"/>
+        <setting visible="false" id="plugin_porngaydvd_com" type="bool" label="DVDGayPorn" default="true"/>
+        <setting visible="false" id="plugin_shemalepower_xyz" type="bool" label="ShemalePower" default="true"/>
+    </category>
+	
+    <category label="30127">
+        <setting label="30033" type="lsep"/>
+        <setting id="debug" type="bool" label="30422" default="false"/>
+        <setting label="Upload kodi.log" type="action" action="XBMC.RunScript(plugin.video.adult.stream, uplog, ?site=globalRun&amp;function=uplog)"/>
+        <setting id="service_log" type="text" label="Url de votre log:" default="" enable="false"/>
+
+        <setting label="[COLOR dodgerblue]Import/Export la BDD (Marque-Page, Historique, etc..)[/COLOR]" type="lsep"/>      
+        <setting label="Import/Export" type="action" action="XBMC.RunScript(plugin.video.adult.stream, sauv, ?site=globalRun&amp;function=sauv)"/>
+
+        <setting label="[COLOR dodgerblue]Supprime les BDD de Adult Stream[/COLOR]" type="lsep"/>   
+        <setting label="Supprimer une BDD" type="action" action="XBMC.RunScript(plugin.video.adult.stream, clean, ?site=globalRun&amp;function=clear)"/>
+
+        <setting label="[COLOR dodgerblue]Supprime la BDD du cache pour les métadonnées[/COLOR]" type="lsep"/>    
+        <setting label="Clear Cache Addon" type="action" action="XBMC.RunScript(plugin.video.adult.stream, addon, ?site=globalRun&amp;function=addon)"/>
+
+        <setting label="[COLOR dodgerblue] les fichiers temporaire de Kodi[/COLOR]" type="lsep"/>
+        <setting label="Clear Cache XBMC" type="action" action="XBMC.RunScript(plugin.video.adult.stream, xbmc, ?site=globalRun&amp;function=xbmc)"/>
+
+        <setting label="[COLOR dodgerblue]Supprime les fichiers de navigation temporaire de Kodi[/COLOR]" type="lsep"/>
+        <setting label="Clear .fi Files" type="action" action="XBMC.RunScript(plugin.video.adult.stream, fi, ?site=globalRun&amp;function=fi)"/>
+
+        <setting label="[COLOR dodgerblue]Supprime les fichiers images temporaire de Kodi physique et BDD[/COLOR]" type="lsep"/>
+        <setting label="Clear Thumbnails" type="action" action="XBMC.RunScript(plugin.video.adult.stream, thumb, ?site=globalRun&amp;function=thumb)"/>
+        
+        <setting type="sep"/>
+        <setting label="Refresh Skin" type="action" action="XBMC.ReloadSkin()"/>
+    </category>
+
+    <category label="30400">
+        <setting label="[COLOR dodgerblue]FirstOneTv[/COLOR]" type="lsep"/>
+        <setting id="hoster_firstonetv_premium" type="bool" label="30403" default="false"/>
+        <setting id="hoster_firstonetv_username" type="text" label="30401" default=""/>
+        <setting id="hoster_firstonetv_password" type="text" label="30402" default="" option="hidden"/>
+
+        <setting label="[COLOR dodgerblue]Uptobox[/COLOR]" type="lsep"/>
+        <setting id="hoster_uptobox_premium" type="bool" label="30403" default="false"/>
+        <setting id="hoster_uptobox_username" type="text" label="30401" default=""/>
+        <setting id="hoster_uptobox_password" type="text" label="30402" default="" option="hidden"/>
+        <setting id="hoster_uptobox_mode_default" type="enum" label="30451" lvalues="30452|30453|30454" default="0" />
+
+        <setting label="[COLOR dodgerblue]1Fichier[/COLOR]" type="lsep"/>
+        <setting id="hoster_onefichier_premium" type="bool" label="30403" default="false"/>
+        <setting id="hoster_onefichier_username" type="text" label="30401" default=""/>
+        <setting id="hoster_onefichier_password" type="text" label="30402" default="" option="hidden"/>
+
+        <setting label="[COLOR dodgerblue]Uploaded[/COLOR]" type="lsep"/>
+        <setting id="hoster_uploaded_premium" type="bool" label="30403" default="false"/>
+        <setting id="hoster_uploaded_username" type="text" label="30401" default=""/>
+        <setting id="hoster_uploaded_password" type="text" label="30402" default="" option="hidden"/>
+
+        <setting label="[COLOR dodgerblue]Utiliser UrlResolver vous permettra d'utiliser Les debrideurs[/COLOR]" type="lsep"/>
+        <setting label="[COLOR crimson][B]ATTENTION:[/B][/COLOR] Adult Stream ne gère pas cette partie." type="lsep"/>
+        <setting label="[CR]A moins d'avoir un débrideur, activer cette option apportera plus de problèmes que d'avantages." type="lsep"/>
+        <setting type="sep"/>
+        <setting id="UserUrlResolver" type="bool" label="Passer par UrlResolver" default="false"/>
+        <setting label="Configurer UrlResolver" type="action" option="close" action="XBMC.RunScript(plugin.video.adult.stream, urlresolver, ?site=globalRun&amp;function=urlresolver)" />
+    </category>
+</settings>
