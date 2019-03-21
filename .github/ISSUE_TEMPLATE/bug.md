@@ -8,7 +8,7 @@ about: Créer un rapport de Bug
 
 Une description claire et concise de ce qu'est le bug.
 
-**Votre system**
+**Votre système**
 
 - OS: [Windows, LibreElec]
 - Appareil [PC, KodiBox]
@@ -24,14 +24,14 @@ Pour cela il nous faut:
 
 **Log**
 
-L’accès un votre fichier log seras un plus.
+L’accès à votre fichier log sera un plus.
 
 Pour savoir comment uploader votre log voir:
 https://kodistream.github.io/adullt-stream-doc/docs/outils/
 
 **Image**
 
-Si votre soucis est visuel faite une capture d’écran.
+Si votre soucis est visuel, faire une capture d’écran.
 
 **Plus**
 
