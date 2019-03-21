@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addons>
+    <addon id="plugin.video.adult.stream" name="Adult Stream" version="0.0.1" provider-name="KodiStream Team">
+        <requires>
+            <import addon="xbmc.python" version="2.24.0"/>
+            <import addon="script.module.simplejson" version="3.3.0"/>
+            <import addon="script.module.urlresolver" optional="true"/>
+            <import addon="script.module.requests" version="2.9.1"/>
+    	    <import addon="script.video.F4mProxy" optional="true"/>
+            <import addon="repository.kodistream.adult" version="1.0"/>
+        </requires>
+        <extension point="xbmc.python.pluginsource" library="default.py">
+            <provides>video</provides>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary lang="fr_FR">Adult Stream par KodiStream.</summary>
+            <description lang="fr_FR">Adult Stream est un module de streaming de films pornographiques.</description>
+            <disclaimer lang="fr_FR">Adult Stream est un addon de streaming videos</disclaimer>
+            <summary lang="fr_CA">Adult Stream par KodiStream</summary>
+            <description lang="fr_CA">Adult Stream est un module de streaming de films pornographiques.</description>
+            <disclaimer lang="fr_CA">Adult Stream est un addon de streaming videos</disclaimer>
+            <summary lang="en_GB">Adult Stream by KodiStream.</summary>
+            <description lang="en_GB">Adult Stream is a addon for Adult Movies Streaming.</description>
+            <disclaimer lang="en_GB">Adult Stream is a video streaming addon</disclaimer>
+            <summary lang="en_NZ">Adult Stream by KodiStream.</summary>
+            <description lang="en_NZ">Adult Stream is a addon for Adult Movies Streaming.</description>
+            <disclaimer lang="en_NZ">Adult Stream is a video streaming addon</disclaimer>
+            <summary lang="en_US">Adult Stream by KodiStream.</summary>
+            <description lang="en_US">Adult Stream is a addon for Adult Movies Streaming.</description>
+            <disclaimer lang="en_US">Adult Stream is a video streaming addon</disclaimer>
+            <platform>all</platform>
+            <license>GNU GENERAL PUBLIC LICENSE</license>
+            <assets>
+    			<icon>icon.png</icon>
+    			<fanart>fanart.jpg</fanart>
+    			<screenshot>screenshot-01.jpg</screenshot>
+    			<screenshot>screenshot-02.jpg</screenshot>
+    			<screenshot>screenshot-03.jpg</screenshot>
+    		</assets>
+        </extension>
+    </addon>
+
+    <addon id="repository.kodistream.adult" name="KodiStream Adult Addons Repository" version="1.0" provider-name="KodiStream">
+        <requires>
+            <import addon="xbmc.addon" version="12.0.0"/>
+        </requires>
+        <extension point="xbmc.addon.repository" name="KodiStream Adult Addons Repository">
+            <info compressed="false">https://raw.githubusercontent.com/KodiStream/xbmc-adult-addons/master/addons.xml</info>
+            <checksum>https://raw.githubusercontent.com/KodiStream/xbmc-adult-addons/master/addons.xml.md5</checksum>
+            <datadir zip="true">https://raw.githubusercontent.com/KodiStream/xbmc-adult-addons/master/repo/</datadir>
+            <hashes>false</hashes>
+        </extension>
+        <extension point="xbmc.addon.metadata">
+            <summary>KodiStream Adult Addons Repository</summary>
+            <description>KodiStream Repository to install Adult Stream Addon</description>
+            <platform>all</platform>
+    </extension>
+</addon>
+</addons>
