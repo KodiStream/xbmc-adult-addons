@@ -1,13 +1,16 @@
 #-*- coding: utf-8 -*-
+# https://github.com/KodiStream/xbmc-adult-addons
+# Venom.
 
-#adult_stream = xbmcaddon.Addon('plugin.video.adult.stream')
-#sLibrary = xbmc.translatePath(adult_stream.getAddonInfo("path")).decode("utf-8")
+# Adult Stream = xbmcaddon.Addon('plugin.video.adult.stream')
+# sLibrary = xbmc.translatePath(Adult Stream.getAddonInfo("path")).decode("utf-8")
 #sys.path.append (sLibrary)
 
 from resources.lib.comaddon import addon, dialog, VSlog, xbmc, xbmcgui, window
 import xbmcvfs
 import sys
-import urllib,urllib2
+import urllib
+import urllib2
 #from util import VStranslatePath
 #from resources.lib.util import VStranslatePath
 
@@ -20,12 +23,13 @@ except:
 
 try:
     import json
-except: 
+except:
     import simplejson as json
 
 
 SITE_IDENTIFIER = 'runscript'
 SITE_NAME = 'runscript'
+
 
 class cClear:
 
@@ -49,7 +53,7 @@ class cClear:
         elif (env == 'changelog_old'):
             try:
                 sUrl = 'https://raw.githubusercontent.com/KodiStream/xbmc-adult-addons/master/plugin.video.adult.stream/changelog.txt'
-                oRequest =  urllib2.Request(sUrl)
+                oRequest = urllib2.Request(sUrl)
                 oResponse = urllib2.urlopen(oRequest)
                 sContent = oResponse.read()
                 self.TextBoxes('Adult Stream Changelog', sContent)
@@ -58,11 +62,11 @@ class cClear:
             return
 
         elif (env == 'changelog'):
-                
+
             class XMLDialog(xbmcgui.WindowXMLDialog):
 
                 def __init__(self, *args, **kwargs):
-                    xbmcgui.WindowXMLDialog.__init__( self )
+                    xbmcgui.WindowXMLDialog.__init__(self)
                     pass
 
                 def onInit(self):
@@ -74,28 +78,27 @@ class cClear:
                     self.button.setLabel('OK')
 
                     sUrl = 'https://api.github.com/repos/KodiStream/xbmc-adult-addons/commits'
-                    oRequest =  urllib2.Request(sUrl)
+                    oRequest = urllib2.Request(sUrl)
                     oResponse = urllib2.urlopen(oRequest)
                     sContent = oResponse.read()
                     result = json.loads(sContent)
                     listitems = []
 
                     for item in result:
-                        #autor
+                        # autor
                         icon = item['author']['avatar_url']
                         login = item['author']['login']
-                        #message
+                        # message
                         try:
                             desc = item['commit']['message'].encode("utf-8")
                         except:
                             desc = 'None'
-       
-                        listitem = xbmcgui.ListItem(label = login, label2 = desc)
-                        listitem.setArt({'icon' : icon, 'thumb' : icon})
+
+                        listitem = xbmcgui.ListItem(label=login, label2=desc)
+                        listitem.setArt({'icon': icon, 'thumb': icon})
 
                         listitems.append(listitem)
                     self.container.addItems(listitems)
-
 
                     self.setFocus(self.container)
 
@@ -106,9 +109,9 @@ class cClear:
                 def onFocus(self, controlId):
                     self.controlId = controlId
 
-                def _close_dialog( self ):
+                def _close_dialog(self):
                     self.close()
-            
+
             #path = cConfig().getAddonPath()
             path = "special://home/addons/plugin.video.adult.stream"
             wd = XMLDialog('DialogSelect.xml', path, "Default")
@@ -119,7 +122,7 @@ class cClear:
         elif (env == 'soutient'):
             try:
                 sUrl = 'https://raw.githubusercontent.com/KodiStream/xbmc-adult-addons/master/plugin.video.adult.stream/soutient.txt'
-                oRequest =  urllib2.Request(sUrl)
+                oRequest = urllib2.Request(sUrl)
                 oResponse = urllib2.urlopen(oRequest)
                 sContent = oResponse.read()
                 self.TextBoxes('Adult Stream Soutient', sContent)
@@ -132,21 +135,23 @@ class cClear:
                 #cached_Cache = cConfig().getFileCache()
                 #cached_Cache = xbmc.translatePath(cached_Cache).decode("utf-8")
                 cached_Cache = "special://home/userdata/addon_data/plugin.video.adult.stream/video_cache.db"
-                #self.ClearDir2(cached_Cache,True)
+                # self.ClearDir2(cached_Cache,True)
                 try:
                     xbmcvfs.delete(cached_Cache)
-                    self.DIALOG.VSinfo('Clear Addon Cache, Successful[CR](Important relancer Adult Stream)')
+                    self.DIALOG.VSinfo(
+                        'Clear Addon Cache, Successful[CR](Important relancer Adult Stream)')
                 except:
                     self.DIALOG.VSerror('Clear Addon Cache, Error')
 
             return
 
         elif (env == 'clean'):
-            liste = ['Historiques', 'Lecture en cours', 'Marqués vues', 'Marque-Pages', 'Téléchargements']
+            liste = ['Historiques', 'Lecture en cours',
+                     'Marqués vues', 'Marque-Pages', 'Téléchargements']
             ret = self.DIALOG.select('BDD à supprimer', liste)
             #cached_DB = cConfig().getFileDB()
-            cached_DB = "special://home/userdata/addon_data/plugin.video.adult.stream/adult.stream.db"
-            #important seul xbmcvfs peux lire le special
+            cached_DB = "special://home/userdata/addon_data/plugin.video.adult.stream/Adult Stream.db"
+            # important seul xbmcvfs peux lire le special
             cached_DB = xbmc.translatePath(cached_DB).decode("utf-8")
 
             sql_drop = ""
@@ -171,7 +176,8 @@ class cClear:
                     db.commit()
                     dbcur.close()
                     db.close()
-                    self.DIALOG.VSok("Suppression BDD, Successful[CR](Important relancer Adult Stream)")
+                    self.DIALOG.VSok(
+                        "Suppression BDD, Successful[CR](Important relancer Adult Stream)")
                 except:
                     self.DIALOG.VSerror("Suppresion BDD, Error")
 
@@ -181,10 +187,11 @@ class cClear:
             if self.DIALOG.VSyesno('Êtes-vous sûr ?'):
                 #temp = xbmc.translatePath('special://temp/').decode("utf-8")
                 path = "special://temp/"
-                #self.ClearDir(temp,True)
+                # self.ClearDir(temp,True)
                 try:
                     xbmcvfs.rmdir(path, True)
-                    self.DIALOG.VSok('Clear Temp Cache, Successful[CR](Important relancer Kodi)')
+                    self.DIALOG.VSok(
+                        'Clear Temp Cache, Successful[CR](Important relancer Kodi)')
                 except:
                     self.DIALOG.VSerror('Clear Temp Cache, Error')
             return
@@ -195,7 +202,8 @@ class cClear:
                 path = "special://temp/archive_cache/"
                 try:
                     xbmcvfs.rmdir(path, True)
-                    self.DIALOG.VSok('Clear Archive_cache Cache, Successful[CR](Important relancer Kodi)')
+                    self.DIALOG.VSok(
+                        'Clear Archive_cache Cache, Successful[CR](Important relancer Kodi)')
                 except:
                     self.DIALOG.VSerror('Clear Archive_cache Cache, Error')
                 # filenames = next(os.walk(path))[2]
@@ -209,9 +217,9 @@ class cClear:
                 #path = xbmc.translatePath('special://logpath/').decode("utf-8")
                 path = "special://logpath/kodi.log"
                 UA = 'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0'
-                headers = { 'User-Agent' : UA }
+                headers = {'User-Agent': UA}
                 #filenames = next(os.walk(path))[2]
-                #for i in filenames:
+                # for i in filenames:
                 if xbmcvfs.exists(path):
                     post_data = {}
                     cUrl = 'http://slexy.org/index.php/submit'
@@ -222,15 +230,17 @@ class cClear:
                     post_data['raw_paste'] = result
                     post_data['author'] = 'kodi.log'
                     post_data['language'] = 'text'
-                    post_data['permissions'] = 1 #private
-                    post_data['expire'] = 259200 #3j
+                    post_data['permissions'] = 1  # private
+                    post_data['expire'] = 259200  # 3j
                     post_data['submit'] = 'Submit+Paste'
-                    request = urllib2.Request(cUrl,urllib.urlencode(post_data),headers)
+                    request = urllib2.Request(
+                        cUrl, urllib.urlencode(post_data), headers)
                     reponse = urllib2.urlopen(request)
-                    code = reponse.geturl().replace('http://slexy.org/view/','')
+                    code = reponse.geturl().replace('http://slexy.org/view/', '')
                     reponse.close()
                     self.ADDON.setSetting('service_log', code)
-                    self.DIALOG.VSok('Ce code doit être transmis lorsque vous ouvrez une issue veuillez le noter:' + '  ' + code)
+                    self.DIALOG.VSok(
+                        'Ce code doit être transmis lorsque vous ouvrez une issue veuillez le noter:' + '  ' + code)
             return
 
         elif (env == 'search'):
@@ -243,7 +253,7 @@ class cClear:
                 ADDON = addon()
 
                 def __init__(self, *args, **kwargs):
-                    xbmcgui.WindowXMLDialog.__init__( self )
+                    xbmcgui.WindowXMLDialog.__init__(self)
                     pass
 
                 def onInit(self):
@@ -258,17 +268,20 @@ class cClear:
                     aPlugins = oPluginHandler.getAllPlugins()
 
                     for aPlugin in aPlugins:
-                        #teste si deja dans le dsip
-                        sPluginSettingsName = 'plugin_' +aPlugin[1]
+                        # teste si deja dans le dsip
+                        sPluginSettingsName = 'plugin_' + aPlugin[1]
                         bPlugin = self.ADDON.getSetting(sPluginSettingsName)
 
                         #icon = os.path.join(unicode(cConfig().getRootArt(), 'utf-8'), 'sites', aPlugin[1]+'.png')
-                        icon = "special://home/addons/plugin.video.adult.stream/resources/art/sites/%s.png" % aPlugin[1]
-                        stitle = aPlugin[0].replace('[COLOR violet]','').replace('[COLOR orange]','').replace('[/COLOR]','').replace('[COLOR dodgerblue]','').replace('[COLOR coral]','')
+                        icon = "special://home/addons/plugin.video.adult.stream/resources/art/sites/%s.png" % aPlugin[
+                            1]
+                        stitle = aPlugin[0].replace('[COLOR violet]', '').replace('[COLOR orange]', '').replace(
+                            '[/COLOR]', '').replace('[COLOR dodgerblue]', '').replace('[COLOR coral]', '')
                         if (bPlugin == 'true'):
                             stitle = ('%s %s') % (stitle, valid)
-                        listitem = xbmcgui.ListItem(label = stitle, label2 = aPlugin[2])
-                        listitem.setArt({'icon' : icon, 'thumb' : icon})
+                        listitem = xbmcgui.ListItem(
+                            label=stitle, label2=aPlugin[2])
+                        listitem.setArt({'icon': icon, 'thumb': icon})
                         listitem.setProperty('Addon.Summary', aPlugin[2])
                         listitem.setProperty('sitename', aPlugin[1])
                         if (bPlugin == 'true'):
@@ -276,7 +289,6 @@ class cClear:
 
                         listitems.append(listitem)
                     self.container.addItems(listitems)
-
 
                     self.setFocus(self.container)
 
@@ -297,29 +309,33 @@ class cClear:
                     elif controlId == 6:
                         item = self.container.getSelectedItem()
                         if item.isSelected() == True:
-                            label = item.getLabel().replace(valid,'')
+                            label = item.getLabel().replace(valid, '')
                             item.setLabel(label)
                             item.select(False)
-                            sPluginSettingsName = ('plugin_%s') % (item.getProperty('sitename'))
-                            self.ADDON.setSetting(sPluginSettingsName, str('false'))
-                        else :
+                            sPluginSettingsName = ('plugin_%s') % (
+                                item.getProperty('sitename'))
+                            self.ADDON.setSetting(
+                                sPluginSettingsName, str('false'))
+                        else:
                             label = ('%s %s') % (item.getLabel(), valid)
                             item.setLabel(label)
                             item.select(True)
-                            sPluginSettingsName = ('plugin_%s') % (item.getProperty('sitename'))
-                            self.ADDON.setSetting(sPluginSettingsName, str('true'))
+                            sPluginSettingsName = ('plugin_%s') % (
+                                item.getProperty('sitename'))
+                            self.ADDON.setSetting(
+                                sPluginSettingsName, str('true'))
                         return
 
                 def onFocus(self, controlId):
                     self.controlId = controlId
 
-                def _close_dialog( self ):
+                def _close_dialog(self):
                     self.close()
 
                 # def onAction( self, action ):
                     # if action.getId() in ( 9, 10, 92, 216, 247, 257, 275, 61467, 61448, ):
-                        # self.close() 
-            
+                    # self.close()
+
             #path = cConfig().getAddonPath()
             path = "special://home/addons/plugin.video.adult.stream"
             wd = XMLDialog('DialogSelect.xml', path, "Default")
@@ -328,7 +344,7 @@ class cClear:
             return
 
         elif (env == 'thumb'):
- 
+
             if self.DIALOG.VSyesno('Êtes-vous sûr ? Ceci effacera toutes les thumbnails '):
 
                 text = False
@@ -340,7 +356,7 @@ class cClear:
                     text = 'Clear Thumbnail Folder, Successful[CR]'
                 except:
                     text = 'Clear Thumbnail Folder, Error[CR]'
-                #for i in os.listdir(path):
+                # for i in os.listdir(path):
                     # folders = os.path.join(path, i).encode('utf-8')
                     # if os.path.isdir(folders):
                     #     p = next(os.walk(folders))[2]
@@ -352,12 +368,12 @@ class cClear:
                 items.sort()
                 for sItemName in items:
                     if "extures" in sItemName:
-                            cached_Cache = "/".join([path_DB, sItemName])
-                            try:
-                                xbmcvfs.delete(cached_Cache)
-                                text += 'Clear Thumbnail DB, Successful[CR]'
-                            except:
-                                text += 'Clear Thumbnail DB, Error[CR]'  
+                        cached_Cache = "/".join([path_DB, sItemName])
+                        try:
+                            xbmcvfs.delete(cached_Cache)
+                            text += 'Clear Thumbnail DB, Successful[CR]'
+                        except:
+                            text += 'Clear Thumbnail DB, Error[CR]'
 
                 if text:
                     text = "%s (Important relancer Kodi)" % text
@@ -373,9 +389,10 @@ class cClear:
             return
 
         elif (env == 'sauv'):
-            #dialog.select('Choose a playlist', ['Playlist #1', 'Playlist #2, 'Playlist #3'])
-            select = self.DIALOG.VSselect(['Import','Export'])
-            DB = "special://home/userdata/addon_data/plugin.video.adult.stream/adult.stream.db"
+            # dialog.select('Choose a playlist', ['Playlist #1', 'Playlist #2,
+            # 'Playlist #3'])
+            select = self.DIALOG.VSselect(['Import', 'Export'])
+            DB = "special://home/userdata/addon_data/plugin.video.adult.stream/Adult Stream.db"
             if select >= 0:
                 #new = self.DIALOG.browse(3, 'Adult Stream', 'files')
                 new = self.DIALOG.browse(3, 'Adult Stream', "files")
@@ -383,11 +400,13 @@ class cClear:
                     try:
                         if select == 0:
                             xbmcvfs.delete(DB)
-                            #copy(source, destination)--copy file to destination, returns true/false.
-                            xbmcvfs.copy(new + 'adult.stream.db', DB)
+                            # copy(source, destination)--copy file to
+                            # destination, returns true/false.
+                            xbmcvfs.copy(new + 'Adult Stream.db', DB)
                         elif select == 1:
-                            #copy(source, destination)--copy file to destination, returns true/false.
-                            xbmcvfs.copy(DB, new + 'adult.stream.db')
+                            # copy(source, destination)--copy file to
+                            # destination, returns true/false.
+                            xbmcvfs.copy(DB, new + 'Adult Stream.db')
                         self.DIALOG.VSinfo('Import/Export DB, Successful')
                     except:
                         self.DIALOG.VSerror('Import/Export DB, Error')
@@ -422,13 +441,12 @@ class cClear:
     #     try:os.unlink(dir)
     #     except Exception, e: print str(e)
 
-
     def TextBoxes(self, heading, anounce):
         # activate the text viewer window
-        xbmc.executebuiltin( "ActivateWindow(%d)" % ( 10147, ) )
+        xbmc.executebuiltin("ActivateWindow(%d)" % (10147, ))
         # get window
         win = window(10147)
-        #win.show()
+        # win.show()
         # give window time to initialize
         xbmc.sleep(100)
         # set heading
